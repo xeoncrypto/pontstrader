@@ -28,11 +28,11 @@ Currently the following functions require a 24/7 running system:
 
 ## Getting started
 
-1. Install python 2.7
+# 1. Install python 2.7
   - Windows & Mac: https://www.python.org/downloads/release/python-2714/
   - Linux: apt-get install python2.7 / yum install python2.7
 
-2. Install python-pip:
+# 2. Install python-pip:
   - Windows: https://pip.pypa.io/en/stable/installing/
   - Linux: apt-get install python-pip / yum install python-pip
   - Mac:
@@ -40,7 +40,7 @@ Currently the following functions require a 24/7 running system:
   easy_install pip
   ```
 
-3. Install python-requests
+# 3. Install python-requests
   - Windows (This only works when you've successfully installed python-pip):
   ```
   C:\Python27\python.exe -m pip install requests
@@ -56,7 +56,7 @@ Currently the following functions require a 24/7 running system:
   easy_install request
   ```
 
-4. Install python-colorama for colors:
+# 4. Install python-colorama for colors:
   - Windows: https://pypi.python.org/pypi/colorama/0.2.7#downloads
   - Linux:
   ```
@@ -69,7 +69,7 @@ Currently the following functions require a 24/7 running system:
   easy_install colorama
   ```
   
-5. Install python-redis
+# 5. Install python-redis
   - Windows:
   ```
   C:\Python27\python.exe -m pip install redis
