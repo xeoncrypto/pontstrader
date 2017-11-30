@@ -108,7 +108,7 @@ Currently the following functions require a 24/7 running system:
   Since version 2.0 you are able to retrieve pushover or pushbullet messages on your phone uppon changes in certain 24/7 running functions. You can either configure or skip if you dont want.
   More information on: https://www.pushover.com or https://www.pushbullet.com (I would recomment pushover over pushbullet, but it costs a little money so make your own choice)
   
-## Re-configure pontstrader?
+## Re-configure pontstrader
 
 Remove config.json in the parent directory to make this happen, re-run pontstrader to start the installation wizard again.
 
