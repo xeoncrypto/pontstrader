@@ -144,4 +144,4 @@ The sell function allows you to sell any coin on any market supported on the Bit
   - You are asked to choose to sell for Last, Ask, Bid or Custom
   - Choose the amount you would like to sell
   - Recheck your input and confirm the sell if everything looks find
-<img src="sell.png">
+<img width="50%" height="50%" src="sell.png">
