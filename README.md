@@ -4,6 +4,9 @@ pontstrader is a trading script running on python2.7 which adds some extra featu
 
 Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone and NAS.
 
+Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
+https://t.me/pontstrader
+
 ## What can users do with pontstrader
 
 1. Buy cryptocurrencies (Bittrex)
@@ -172,3 +175,17 @@ This function is pretty straight forward, it shows all your open orders upon sta
 This function allows you to watch a coin in real-time, quering the pontstrader redis database server every 0.5 for price updates. Only price changes are shown, check the screenshot.
 
 <img width="25%" height="25%" src="watch.png">
+
+#### 7. Withdraw
+The functions allows you to withdraw coins towards other wallets, also pretty straight forward and easy to use.
+Dont forget to add a Payment ID if required.
+
+<img width="25%" height="25%" src="withdraw.png">
+
+#### 8. Arbitrage
+The arbitrage function allows you to show price differences between 5 different exchanges, currently supported exchanges are:
+Bittrex, HitBTC, Binance, Bitfinex and Poloniex
+  - You can choose to show oppertunaties only from a specific market
+  - You can choose to show oppertunaties only from a specific exchange
+
+<img width="25%" height="25%" src="arbitrage.png">
