@@ -28,11 +28,11 @@ Currently the following functions require a 24/7 running system:
 
 ## Getting started
 
-### 1. Install python 2.7
+#### 1. Install python 2.7
   - Windows & Mac: https://www.python.org/downloads/release/python-2714/
   - Linux: apt-get install python2.7 / yum install python2.7
 
-### 2. Install python-pip:
+#### 2. Install python-pip:
   - Windows: https://pip.pypa.io/en/stable/installing/
   - Linux: apt-get install python-pip / yum install python-pip
   - Mac:
@@ -40,7 +40,7 @@ Currently the following functions require a 24/7 running system:
   easy_install pip
   ```
 
-### 3. Install python-requests
+#### 3. Install python-requests
   - Windows (This only works when you've successfully installed python-pip):
   ```
   C:\Python27\python.exe -m pip install requests
@@ -56,7 +56,7 @@ Currently the following functions require a 24/7 running system:
   easy_install request
   ```
 
-### 4. Install python-colorama for colors:
+#### 4. Install python-colorama for colors:
   - Windows: https://pypi.python.org/pypi/colorama/0.2.7#downloads
   - Linux:
   ```
@@ -69,7 +69,7 @@ Currently the following functions require a 24/7 running system:
   easy_install colorama
   ```
   
-### 5. Install python-redis
+#### 5. Install python-redis
   - Windows:
   ```
   C:\Python27\python.exe -m pip install redis
@@ -84,3 +84,23 @@ Currently the following functions require a 24/7 running system:
   or
   easy_install redis
   ```
+
+#### 6. Now you will be able to run the script
+  - Windows: run cmd as administrator, cd to the right directory, run: python run.py
+  - Linux & Mac: cd to the pontstrader directory and run: ./run.py
+  - For windows you can also make a .bat file:
+  ```
+    --- BEGIN ---
+    @echo off
+    TITLE P O N T S T R A D E R
+    "C:\Python27\python.exe" C:\Python27\Scripts\run.py
+    pause > nul
+    --- END ---
+  ```
+
+#### 7. Running the script for the first time allows you to setup a few things
+  ###### - Bittrex API
+  Because you are trading with pontstrader you will have to provide the Bittrex API key and secret during the installation wizard, you can create a key+secret via https://bittrex.com/Manage#sectionApi
+  For most of the functions the first 2 slicers need to be on, if you would like to Withdraw with pontstrader please allow the Withdraw slider. In the future we will allow market trading, from that moment the 3th slider should be on as well.
+  If you enable Withdraw, make sure to add a IP whitelist for this key which will disallow others to withdraw through your API keys should they ever get known by 3th party. (pontstrader will not send or store your keys anywhere)
+  
