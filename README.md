@@ -135,7 +135,7 @@ The buy function allows you to buy any coin on any market supported on the Bittr
 
   
 
-#### 1. Sell
+#### 2. Sell
 The sell function allows you to sell any coin on any market supported on the Bittrex exchange.
   - Upon starting this function your balances will be checked.
   - Choose the currency by providing its corresponding number.
