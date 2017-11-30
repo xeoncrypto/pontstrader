@@ -4,6 +4,12 @@ pontstrader is a trading script running on python2.7 which adds some extra featu
 
 Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone and NAS.
 
+On this page you can find:
+  - Installation Guide
+  - Re-configure guide
+  - Upgrade guide
+  - Features and its documentation
+
 Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
 https://t.me/pontstrader
 
