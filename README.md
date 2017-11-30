@@ -131,7 +131,7 @@ The buy function allows you to buy any coin on any market supported on the Bittr
   - You are asked to choose to buy for Last, Ask, Bid or Custom
   - Choose the amount you would like to buy
   - Recheck your input and confirm the buy if everything looks find
-<img src="https://github.com/p0nt/pontstrader/blob/master/buy.png">
+<img width="50%" height="50%" src="buy.png">
 
   
 
