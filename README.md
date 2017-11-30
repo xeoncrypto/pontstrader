@@ -35,6 +35,52 @@ Currently the following functions require a 24/7 running system:
 2. Install python-pip:
   - Windows: https://pip.pypa.io/en/stable/installing/
   - Linux: apt-get install python-pip / yum install python-pip
-  - Mac: ```
+  - Mac:
+  ```
   easy_install pip
+  ```
+
+3. Install python-requests
+  - Windows (This only works when you've successfully installed python-pip):
+  ```
+  C:\Python27\python.exe -m pip install requests
+  ```
+  - Linux:
+  ```
+  apt-get install python-requests / yum install python-requests
+  ```
+  - Mac:
+  ```
+  python -m pip install requests
+  or
+  easy_install request
+  ```
+
+4. Install python-colorama for colors:
+  - Windows: https://pypi.python.org/pypi/colorama/0.2.7#downloads
+  - Linux:
+  ```
+  apt-get install python-colorama / yum install python-colorama
+  ```
+  - Mac:
+  ```
+  python <pathtocolorama>/setup.py install
+  or
+  easy_install colorama
+  ```
+  
+5. Install python-redis
+  - Windows:
+  ```
+  C:\Python27\python.exe -m pip install redis
+  ```
+  Linux: 
+  ```
+  pip install redis
+  ```
+  Mac:
+  ```
+  pip install redis
+  or
+  easy_install redis
   ```
