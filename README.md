@@ -50,7 +50,7 @@ The buy function allows you to buy any coin on any market supported on the Bittr
   - You are asked to choose to buy for Last, Ask, Bid or Custom
   - Choose the amount you would like to buy
   - Recheck your input and confirm the buy if everything looks find
-<img width="25%" height="25%" src="buy.png">
+<img width="25%" height="25%" src="img/buy.png">
 
   
 
@@ -63,7 +63,7 @@ The sell function allows you to sell any coin on any market supported on the Bit
   - You are asked to choose to sell for Last, Ask, Bid or Custom
   - Choose the amount you would like to sell
   - Recheck your input and confirm the sell if everything looks find
-<img width="25%" height="25%" src="sell.png">
+<img width="25%" height="25%" src="img/sell.png">
 
 #### 3. Buy and Sell
 The buy and sell function allows you to buy any coin on any market supported on the Bittrex exchange, after buying create a sell order with a multiplier
@@ -75,28 +75,28 @@ The buy and sell function allows you to buy any coin on any market supported on 
   - Choose the multiplier (1.1 = 10%)
   - Recheck your input and confirm the buy if everything looks find
   - The script will buy your currency, and create a sell order after the buy is completed
-<img width="25%" height="25%" src="buysell.png">
+<img width="25%" height="25%" src="img/buysell.png">
 
 #### 4. Balances
 The balances function is pretty straight forward, it shows all your balances upon starting it as you can see on this screenshot below.
 
-<img width="25%" height="25%" src="balances.png">
+<img width="25%" height="25%" src="img/balances.png">
 
 #### 5. Orderbook
 The orderbook function is pretty straight forward, it shows all your open orders upon starting it as you can see on this screenshot below.
 
-<img width="25%" height="25%" src="orderbook.png">
+<img width="25%" height="25%" src="img/orderbook.png">
 
 #### 6. Watch
 The watch function allows you to watch a coin in real-time, quering the pontstrader redis database server every 0.5 for price updates. Only price changes are shown, check the screenshot.
 
-<img width="25%" height="25%" src="watch.png">
+<img width="25%" height="25%" src="img/watch.png">
 
 #### 7. Withdraw
 The withdraw function allows you to withdraw coins towards other wallets, also pretty straight forward and easy to use.
 Dont forget to add a Payment ID if required.
 
-<img width="25%" height="25%" src="withdraw.png">
+<img width="25%" height="25%" src="img/withdraw.png">
 
 #### 8. Arbitrage
 The arbitrage function allows you to show price differences between 5 different exchanges, currently supported exchanges are:
@@ -104,7 +104,7 @@ Bittrex, HitBTC, Binance, Bitfinex and Poloniex
   - You can choose to show oppertunaties only from a specific market
   - You can choose to show oppertunaties only from a specific exchange
 
-<img width="25%" height="25%" src="arbitrage.png">
+<img width="25%" height="25%" src="img/arbitrage.png">
 
 #### 9. Trailing Stop Loss
 The trailing stop loss function allows you to trade currencies on a more advanced matter, if you do not know what trailing stop loss is please have a look at: https://www.investopedia.com/articles/trading/08/trailing-stop-loss.asp
@@ -117,8 +117,8 @@ Small example:
 If you set a trailing stop loss treshold to 10% your trade will immidiatly be sold when it falls 10% straight away, but if it climbs to 5% profit and afterwards falls 10% it will stop at -5% instead of minus 10%, this results in less loss.
 If the price starts climbing and it goes towards 20%, the trailing stop loss will be set to 10%. When it starts falling it will sell on 10% which results in less risk and restless sleep for you :)
 
-<img width="25%" height="25%" src="trailing1.png">
-<img width="25%" height="25%" src="trailing2.png">
+<img width="25%" height="25%" src="img/trailing1.png">
+<img width="25%" height="25%" src="img/trailing2.png">
 
 Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
 https://t.me/pontstrader
