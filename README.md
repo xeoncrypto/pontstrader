@@ -26,7 +26,7 @@ Currently the following functions require a 24/7 running system:
 3. Multiple exchange support on every function, currently only Bittrex is supported on most of them
 4. And much more!
 
-## Getting started
+## Installation Guide
 
 #### 1. Install python 2.7
   - Windows & Mac: https://www.python.org/downloads/release/python-2714/
@@ -104,3 +104,10 @@ Currently the following functions require a 24/7 running system:
   For most of the functions the first 2 slicers need to be on, if you would like to Withdraw with pontstrader please allow the Withdraw slider. In the future we will allow market trading, from that moment the 3th slider should be on as well.
   If you enable Withdraw, make sure to add a IP whitelist for this key which will disallow others to withdraw through your API keys should they ever get known by 3th party. (pontstrader will not send or store your keys anywhere)
   
+  ###### - Pushover / Pushbullet
+  Since version 2.0 you are able to retrieve pushover or pushbullet messages on your phone uppon changes in certain 24/7 running functions. You can either configure or skip if you dont want.
+  More information on: https://www.pushover.com or https://www.pushbullet.com (I would recomment pushover over pushbullet, but it costs a little money so make your own choice)
+  
+## Re-configure pontstrader?
+
+Remove config.json in the parent directory to make this happen.
