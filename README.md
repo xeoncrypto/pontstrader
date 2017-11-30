@@ -160,12 +160,15 @@ The buy and sell function allows you to buy any coin on any market supported on 
 
 #### 4. Balances
 This function is pretty straight forward, it shows all your balances upon starting it as you can see on this screenshot below.
+
 <img width="25%" height="25%" src="balances.png">
 
 #### 5. Orderbook
 This function is pretty straight forward, it shows all your open orders upon starting it as you can see on this screenshot below.
+
 <img width="25%" height="25%" src="orderbook.png">
 
 #### 6. Watch
 This function allows you to watch a coin in real-time, quering the pontstrader redis database server every 0.5 for price updates. Only price changes are shown, check the screenshot.
+
 <img width="25%" height="25%" src="watch.png">
