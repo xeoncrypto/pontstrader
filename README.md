@@ -31,6 +31,9 @@ Currently the following functions require a 24/7 running system:
 3. Multiple exchange support on every function, currently only Bittrex is supported on most of them
 4. And much more!
 
+Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
+https://t.me/pontstrader
+
 ## Installation Guide
 
 #### 1. Install python 2.7
@@ -162,22 +165,22 @@ The buy and sell function allows you to buy any coin on any market supported on 
 <img width="25%" height="25%" src="buysell.png">
 
 #### 4. Balances
-This function is pretty straight forward, it shows all your balances upon starting it as you can see on this screenshot below.
+The balances function is pretty straight forward, it shows all your balances upon starting it as you can see on this screenshot below.
 
 <img width="25%" height="25%" src="balances.png">
 
 #### 5. Orderbook
-This function is pretty straight forward, it shows all your open orders upon starting it as you can see on this screenshot below.
+The orderbook function is pretty straight forward, it shows all your open orders upon starting it as you can see on this screenshot below.
 
 <img width="25%" height="25%" src="orderbook.png">
 
 #### 6. Watch
-This function allows you to watch a coin in real-time, quering the pontstrader redis database server every 0.5 for price updates. Only price changes are shown, check the screenshot.
+The watch function allows you to watch a coin in real-time, quering the pontstrader redis database server every 0.5 for price updates. Only price changes are shown, check the screenshot.
 
 <img width="25%" height="25%" src="watch.png">
 
 #### 7. Withdraw
-The functions allows you to withdraw coins towards other wallets, also pretty straight forward and easy to use.
+The withdraw function allows you to withdraw coins towards other wallets, also pretty straight forward and easy to use.
 Dont forget to add a Payment ID if required.
 
 <img width="25%" height="25%" src="withdraw.png">
@@ -189,3 +192,20 @@ Bittrex, HitBTC, Binance, Bitfinex and Poloniex
   - You can choose to show oppertunaties only from a specific exchange
 
 <img width="25%" height="25%" src="arbitrage.png">
+
+#### 9. Trailing Stop Loss
+The trailing stop loss function allows you to trade currencies on a more advanced matter, if you do not know what trailing stop loss is please have a look at: https://www.investopedia.com/articles/trading/08/trailing-stop-loss.asp
+
+Upon selling a coin, either with loss or profit... a push notification will be send towards your phone if you've enabled pushover or pushbullet (which is awesome btw!)
+
+Please keep in mind this function requires the system running this to be on 24/7, because this script will look for price differences every 0.5 seconds and is not able to do this when its not on. A recommendation will be a power efficient raspberry pi with for example Raspbian, you can run pontstrader is a screen or tmux session.
+
+Small example:
+If you set a trailing stop loss treshold to 10% your trade will immidiatly be sold when it falls 10% straight away, but if it climbs to 5% profit and afterwards falls 10% it will stop at -5% instead of minus 10%, this results in less loss.
+If the price starts climbing and it goes towards 20%, the trailing stop loss will be set to 10%. When it starts falling it will sell on 10% which results in less risk and restless sleep for you :)
+
+<img width="25%" height="25%" src="trailing1.png">
+<img width="25%" height="25%" src="trailing2.png">
+
+Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
+https://t.me/pontstrader
