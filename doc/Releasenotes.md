@@ -3,6 +3,7 @@
 - Trailing Stop Loss out of BETA
 - Added current ask on orderbook entries
 - Fixed bug where trailing stop loss would sell for ask instead of traling stop loss value
+- Fixed currency naming indent on all functions
 
 # v3.1
 - Arbitrage hot fix (float error)
