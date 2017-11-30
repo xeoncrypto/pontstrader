@@ -2,7 +2,7 @@
 
 pontstrader is a trading script running on python2.7 which adds some extra features to the default Bittrex trading possibilities trough the Bittrex webinterface.
 
-Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone, NAS
+Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone and NAS.
 
 ## What can users do with pontstrader
 
@@ -120,3 +120,28 @@ If you would like to upgrade your old version towards a newer version, here is a
   - Download and unzip the new version
   - Remove the functions directory together with run.py in the root directory of the script, the path where you installed pontstrader (!!! Make sure not to remove config.json, unless you want to redo the installation wizard)
   - Done, you can run pontstrader as you normally do (The version will show at the top from version 3.2 and above)
+
+## Features
+
+#### 1. Buy
+The buy function allows you to buy any coin on any market supported on the Bittrex exchange.
+  - Choose a market (BTC, ETH or USDT)
+  - Choose a currency such as NEO, LTC or LSK
+  - Price information will be shown, also shows you how much you can buy at current Last, Ask and Bid rates
+  - You are asked to choose to buy for Last, Ask, Bid or Custom
+  - Choose the amount you would like to buy
+  - Recheck your input and confirm the buy if everything looks find
+[[https://github.com/p0nt/pontstrader/blob/master/img/buy.png|alt=buy]]
+
+  
+
+#### 1. Sell
+The sell function allows you to sell any coin on any market supported on the Bittrex exchange.
+  - Upon starting this function your balances will be checked.
+  - Choose the currency by providing its corresponding number.
+  - Choose the market where you would like to sell the coin on (Make sure the market exists).
+  - Price information will be shown
+  - You are asked to choose to sell for Last, Ask, Bid or Custom
+  - Choose the amount you would like to sell
+  - Recheck your input and confirm the sell if everything looks find
+[[https://github.com/p0nt/pontstrader/blob/master/img/sell.png|alt=sell]]
