@@ -145,3 +145,15 @@ The sell function allows you to sell any coin on any market supported on the Bit
   - Choose the amount you would like to sell
   - Recheck your input and confirm the sell if everything looks find
 <img width="25%" height="25%" src="sell.png">
+
+#### 3. Buy and Sell
+The buy and sell function allows you to buy any coin on any market supported on the Bittrex exchange, after buying create a sell order with a multiplier
+  - Choose a market (BTC, ETH or USDT)
+  - Choose a currency such as NEO, LTC or LSK
+  - Price information will be shown, also shows you how much you can buy at current Last, Ask and Bid rates
+  - You are asked to choose to buy for Last, Ask, Bid or Custom
+  - Choose the amount you would like to buy
+  - Choose the multiplier (1.1 = 10%)
+  - Recheck your input and confirm the buy if everything looks find
+  - The script will buy your currency, and create a sell order after the buy is completed
+<img width="25%" height="25%" src="buysell.png">
