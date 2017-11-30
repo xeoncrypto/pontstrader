@@ -131,7 +131,7 @@ The buy function allows you to buy any coin on any market supported on the Bittr
   - You are asked to choose to buy for Last, Ask, Bid or Custom
   - Choose the amount you would like to buy
   - Recheck your input and confirm the buy if everything looks find
-<img width="50%" height="50%" src="buy.png">
+<img width="25%" height="25%" src="buy.png">
 
   
 
@@ -144,4 +144,4 @@ The sell function allows you to sell any coin on any market supported on the Bit
   - You are asked to choose to sell for Last, Ask, Bid or Custom
   - Choose the amount you would like to sell
   - Recheck your input and confirm the sell if everything looks find
-<img width="50%" height="50%" src="sell.png">
+<img width="25%" height="25%" src="sell.png">
