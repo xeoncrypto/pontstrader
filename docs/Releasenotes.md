@@ -1,4 +1,4 @@
-# v3.2
+# v3.2 (Unreleased)
 - New feature: Stop Loss + Take Profit (BETA)
 - Trailing Stop Loss out of BETA
 - Added current ask on orderbook entries
