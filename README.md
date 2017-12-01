@@ -1,3 +1,5 @@
+<img width="50%" height="50%" src="img/pontstrader_logo.jpg">
+
 # pontstrader
 
 pontstrader is a trading script running on python2.7 which adds some extra features to the default Bittrex trading possibilities trough the Bittrex webinterface.
