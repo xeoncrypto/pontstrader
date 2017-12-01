@@ -1,4 +1,6 @@
-<img width="50%" height="50%" src="img/pontstrader_logo.jpg">
+<p align="center">
+  <img width="25%" height="25%" src="img/pontstrader_logo.jpg">
+</p>
 
 # pontstrader
 
