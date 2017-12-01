@@ -38,17 +38,13 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       threads = threading.enumerate()
       thread_counter = 0
       for t in threading.enumerate():
-        if 'arbitrage' in t.name:
-          pass
-        elif 'Main' in t.name:
-          pass
-        else:
+        if in t.name.startswith('sltp-'):
           thread_counter += 1
       if thread_counter > 0:
-        print (Fore.YELLOW +'There are currently {0} active trade(s):'.format(thread_counter))
+        print (Fore.YELLOW +'There are currently {0} active sltp trade(s):'.format(thread_counter))
       else:
-        print (Fore.YELLOW +'There are currently no active trades')
-      print 'Would you like to make another trade or check the status/history of your trades?'
+        print (Fore.YELLOW +'There are currently no active sltp trades')
+      print 'Would you like to make another sltp trade or check the status/history of your sltp trades?'
       print(Fore.GREEN +'1. New trade')
       print(Fore.YELLOW +'2. Status / History')
       print(Fore.RED +'3. Back to Main Menu')
@@ -68,9 +64,10 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
             trades = 0
             for k, v in messages.iteritems():
               trades += 1
-              print v
+              if v.startswith('sltp-'):
+                print v
             if trades == 0:
-              print (Fore.RED +'There is currently no trade status/history available!')
+              print (Fore.RED +'There is currently no sltp trade status/history available!')
               print (40 * '-')
             print 'Refresh, new trade or back to Main Menu?' 
             print(Fore.GREEN +'1. Refresh')
