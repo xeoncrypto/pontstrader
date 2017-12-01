@@ -113,7 +113,7 @@ Bittrex, HitBTC, Binance, Bitfinex and Poloniex
 
 <img width="25%" height="25%" src="img/arbitrage.png">
 
-#### 9. Trailing Stop Loss
+#### 9. Trailing Stop Loss (Requires 24/7 running device)
 The trailing stop loss function allows you to trade currencies on a more advanced matter, if you do not know what trailing stop loss is please have a look at: https://www.investopedia.com/articles/trading/08/trailing-stop-loss.asp
 
 Upon selling a coin, either with loss or profit... a push notification will be send towards your phone if you've enabled pushover or pushbullet (which is awesome btw!)
@@ -126,6 +126,28 @@ If the price starts climbing and it goes towards 20%, the trailing stop loss wil
 
 <img width="25%" height="25%" src="img/trailing1.png">
 <img width="25%" height="25%" src="img/trailing2.png">
+
+#### 10. Take Profit (Requires 24/7 running device)
+The take profit function is actually the same as the Sell option, only the difference is that this script will keep track of the sell and notify you by a push message when the sell have happend.
+
+Because the script is keeping track of the sell, you will need to run this on a device which is on 24/7.
+
+<img width="25%" height="25%" src="img/takeprofit1.png">
+<img width="25%" height="25%" src="img/takeprofit2.png">
+
+#### 11. Stop Loss + Take Profit (Requires 24/7 running device)
+The take profit function is actually the same as the Sell option, including a stop loss function which allows you to set not only one but both of them.
+
+Same as the other 24/7 functions this function will notify you on changes through a push message.
+
+<img width="25%" height="25%" src="img/stoplosstakeprofit1.png">
+<img width="25%" height="25%" src="img/stoplosstakeprofit2.png">
+
+#### 12. Trailing + Take Profit (Requires 24/7 running device)
+This function is the same as the trailing stop loss function, the only difference is... is that this function will never ever sell your coin when its down, it will only trigger a sell when the trailing stop loss threshold is in profit.
+
+<img width="25%" height="25%" src="img/trailingtakeprofit1.png">
+<img width="25%" height="25%" src="img/trailingtakeprofit2.png">
 
 Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
 https://t.me/pontstrader

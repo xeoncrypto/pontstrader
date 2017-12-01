@@ -1,6 +1,6 @@
 #!/usr/bin/env python
     
-def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_password):
+def trailingtakeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis_password):
 
   import sys, os, json, time, threading, requests, redis
   from datetime import datetime
@@ -29,7 +29,7 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
     pass
   
   print (40 * '-')
-  print(Fore.GREEN +'   T R A I L I N G  S T O P  L O S S')
+  print(Fore.GREEN +'   T R A I L I N G  T A K E  P R O F I T')
   print (40 * '-')
   while True:
     status_update = False
@@ -38,13 +38,13 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
       threads = threading.enumerate()
       thread_counter = 0
       for t in threading.enumerate():
-        if t.name.startswith('tsl-'):
+        if t.name.startswith('ttp-'):
           thread_counter += 1
       if thread_counter > 0:
-        print (Fore.YELLOW +'There are currently {0} active tsl trade(s):'.format(thread_counter))
+        print (Fore.YELLOW +'There are currently {0} active ttp trade(s):'.format(thread_counter))
       else:
-        print (Fore.YELLOW +'There are currently no active tsl trades')
-      print 'Would you like to make another tsl trade or check the status/history of your tsl trades?'
+        print (Fore.YELLOW +'There are currently no active ttp trades')
+      print 'Would you like to make another ttp trade or check the status/history of your ttp trades?'
       print(Fore.GREEN +'1. New trade')
       print(Fore.YELLOW +'2. Status / History')
       print(Fore.RED +'3. Back to Main Menu')
@@ -64,10 +64,10 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
             trades = 0
             for k, v in messages.iteritems():
               trades += 1
-              if v.startswith('tsl-'):
+              if v.startswith('ttp-'):
                 print v
             if trades == 0:
-              print (Fore.RED +'There is currently no tsl trade status/history available!')
+              print (Fore.RED +'There is currently no ttp trade status/history available!')
               print (30 * '-')
             print 'Refresh, new trade or back to Main Menu?' 
             print(Fore.GREEN +'1. Refresh')
@@ -265,7 +265,7 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
           send_pushover(pushover_user, pushover_app, message)
           send_pushbullet(pushbullet_token, message)
           break
-        while float(ask) > float(trailing_stop_loss):
+        while True:
           try:
             time.sleep(0.5)
             values = r.hmget(market, 'Ask')
@@ -296,6 +296,10 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
             elif float(ask) == float(buyprice) and float(ask) != float(lastprice):
               pass
             lastprice = float(ask)
+            feepercentage = (0.5*float(buyprice))/100
+            buypriceplusfee = float(buyprice) + float(feepercentage)
+            if float(ask) <= float(trailing_stop_loss) and float(ask) > float(buypriceplusfee):
+              break
         profit_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
         try:
           sell = api.selllimit(market, amount, trailing_stop_loss)
@@ -324,7 +328,7 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
   
     try:
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M") 
-      threadname = 'tsl-{0}'.format(datetime)
+      threadname = 'ttp-{0}'.format(datetime)
       thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, trailing))
       thread.daemon = True
       thread.start()

@@ -93,9 +93,9 @@ def buysell(key, secret, redis_password):
       if m['MarketCurrency'] == currency and m['BaseCurrency'] == trade:
         minimum = m['MinTradeSize']
         print '- Minimum ({0}): {1:.8f}'.format(currency, minimum)
-    print '- Minimum ({0}): 0.00050000'.format(trade)
-    enough = trade_fee + 0.00050000 + last
-    if available['Available'] < 0.00050000:
+    print '- Minimum ({0}): 0.00100000'.format(trade)
+    enough = trade_fee + 0.00100000 + last
+    if available['Available'] < 0.00100000:
       print(Fore.RED +'You dont have enough {0} ({1:.8f}) to buy anything!'.format(trade, available['Available']))
       time.sleep(1)
       break
