@@ -59,9 +59,15 @@
 
 #### 6. Download the script
   - Download the latest version: https://github.com/p0nt/pontstrader/archive/master.zip
-  - Or clone it: git clone https://github.com/p0nt/pontstrader.git
+  - Or clone it:
+  ```
+  git clone https://github.com/p0nt/pontstrader.git
+  ```
   - For development branch use: https://github.com/p0nt/pontstrader/archive/development.zip
-  - Or clone it: git clone -b development https://github.com/p0nt/pontstrader.git
+  - Or clone it:
+  ```
+  git clone -b development https://github.com/p0nt/pontstrader.git
+  ```
 
 #### 7. Now you will be able to run the script
   - Windows: run cmd as administrator, cd to the right directory, run: python run.py
