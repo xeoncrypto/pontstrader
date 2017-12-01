@@ -5,7 +5,7 @@ pontstrader is a trading script running on python2.7 which adds some extra featu
 
 Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone and NAS.
 
-PS. pontstrader is not a bot!
+!!! PONTSTRADER IS NOT AN AUTOMATED TRADING BOT !!!
 
 Index:
   - Features (This page)
