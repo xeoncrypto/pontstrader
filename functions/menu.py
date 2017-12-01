@@ -15,6 +15,7 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
   from withdraw import withdraw
   from arbitrage import arbitrage
   from trailing import trailing
+  from takeprofit import takeprofit
   from stoplosstakeprofit import stoplosstakeprofit
   from colorama import Fore, Back, Style, init
   init(autoreset=True)
@@ -31,13 +32,14 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
     print(Fore.YELLOW + '6. Watch coin')
     print(Fore.YELLOW + '7. Withdraw')
     print(Fore.YELLOW + '8. Arbitrage')
-    print(Fore.YELLOW + '9. Trailing stop')
-    print(Fore.YELLOW + '10. Stop Loss + Take Profit (BETA)')
-    print(Fore.RED +'11. Exit')
+    print(Fore.YELLOW + '9. Trailing stop (24/7)')
+    print(Fore.YELLOW + '10. Take Profit (BETA + 24/7)')
+    print(Fore.YELLOW + '11. Stop Loss + Take Profit (BETA + 24/7)')
+    print(Fore.RED +'12. Exit')
     print (30 * '-')
 
     try:
-      choice = raw_input('Enter your choice [1-11] : ')
+      choice = raw_input('Enter your choice [1-12] : ')
       choice = int(choice)
     except:
       print 'Invalid number. Try again...'
@@ -78,12 +80,16 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
     elif choice == 9:
       trailing(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis_password)
 
-    # STOP LOSS TAKE PROFIT
+    # TAKE PROFIT
     elif choice == 10:
+      takeprofit(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis_password)
+
+    # STOP LOSS TAKE PROFIT
+    elif choice == 11:
       stoplosstakeprofit(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis_password)
 
     # EXIT
-    elif choice == 11:
+    elif choice == 12:
       count = threading.activeCount()
       if count > 1:
         threads = threading.enumerate()

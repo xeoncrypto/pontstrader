@@ -1,6 +1,6 @@
 #!/usr/bin/env python
     
-def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis_password):
+def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis_password):
 
   import sys, os, json, time, threading, requests, redis
   from datetime import datetime
@@ -217,13 +217,6 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
     print (Fore.YELLOW +'- Ask:              {0:.8f}'.format(float(values[0])))
     print (Fore.YELLOW +'- Bid:              {0:.8f}'.format(float(values[9])))
     print (40 * '-')
-    try:
-      stoploss = raw_input('Stop Loss? [eg. 0.00436] : ')
-      stoploss = float(stoploss)
-    except:
-      print '\nInvalid number... going back to Main Menu'
-      time.sleep(1)
-      break
 
     if oneortwotargets == True:
       pass
@@ -247,9 +240,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
 #      print (Fore.YELLOW +'- Buyprice:               {0:.8f}'.format(float(values[0])))
 #      print (Fore.YELLOW +'- Target 1:               {0:.8f}'.format(float(target1)))
 #      print (Fore.YELLOW +'- Target 2:               {0:.8f}'.format(float(target2)))
-#      print (Fore.YELLOW +'- Stop Loss:              {0:.8f}'.format(float(stoploss)))
-#      print (Fore.YELLOW +'Because the price could have changed during your input...')
-#      print (Fore.YELLOW +'Pontstrader wil calculate new targets and stop loss based on the buyprice.')
+#      print (Fore.YELLOW +'Because the price could have changed during your input, the buyprice may differ a little from the above prices!')
     else:
       try:
         target = raw_input('Target? 100% of the trade value will be sold here [eg. 0.00436] : ')
@@ -262,7 +253,6 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       print (Fore.GREEN +'   B U Y  I N F O R M A T I O N')
       print (Fore.YELLOW +'- Buyprice:               {0:.8f}'.format(float(values[0])))
       print (Fore.YELLOW +'- Target:                 {0:.8f}'.format(float(target)))
-      print (Fore.YELLOW +'- Stop Loss:              {0:.8f}'.format(float(stoploss)))
       print (40 * '-')
       print (Fore.YELLOW +'Because the price could have changed during your input, the buyprice may differ a little from the above prices!')
     
@@ -395,38 +385,13 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
                   break
-              elif float(ask) <= float(stoploss):
-                try:
-                  sell = api.selllimit(market, amount, ask)
-                  sell_uuid = sell['uuid']
-                  time.sleep(0.5)
-                  sellorder = api.getorder(uuid=sell_uuid)
-                  while sellorder['IsOpen'] == True:
-                    message = '{0}: Stop Loss triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
-                    messages[thread_name] = message
-                    try:
-                      sellorder = api.getorder(uuid=sell_uuid)
-                    except:
-                      pass
-                    time.sleep(2)
-                  message = '{0}: {1} SOLD (Stop Loss) | Buy price {2:.8f} | Sell price {3:.8f} | Loss {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
-                  messages[thread_name] = message
-                  send_pushover(pushover_user, pushover_app, message)
-                  send_pushbullet(pushbullet_token, message)
-                  break
-                except:
-                  message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
-                  messages[thread_name] = message
-                  send_pushover(pushover_user, pushover_app, message)
-                  send_pushbullet(pushbullet_token, message)
-                  break
               else:
                 message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
                 messages[thread_name] = message
 
     try:
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
-      threadname = 'sltp-{0}'.format(datetime)
+      threadname = 'tp-{0}'.format(datetime)
       if oneortwotargets == True:
         thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, stoploss, target1, target2))
       else:
