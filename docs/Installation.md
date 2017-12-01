@@ -91,3 +91,7 @@
   ###### - Pushover / Pushbullet
   Since version 2.0 you are able to retrieve pushover or pushbullet messages on your phone uppon changes in certain 24/7 running functions. You can either configure or skip if you dont want.
   More information on: https://www.pushover.com or https://www.pushbullet.com (I would recomment pushover over pushbullet, but it costs a little money so make your own choice)
+
+  ##### - Redis password
+  Since version 3.2 pontstrader can be found on Github, therefore the code is public which made me remove the password from the code and added it to the wizard everybody will have to go through starting the script for the first time, this disallows people from using the script without paying 10 dollars for it.
+  If you need the password, please contact p0nts on telegram!
