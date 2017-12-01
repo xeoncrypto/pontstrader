@@ -1,5 +1,3 @@
-test
-
 <p align="center">
   <img width="25%" height="25%" src="img/pontstrader_logo.jpg">
 </p>
