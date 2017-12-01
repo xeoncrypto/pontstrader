@@ -1,5 +1,7 @@
-# v3.2 (Unreleased)
+# v3.2
+- New feature: Take Profit (BETA)
 - New feature: Stop Loss + Take Profit (BETA)
+- New feature: Trailing + Take Profit (BETA)
 - Trailing Stop Loss out of BETA
 - Added current ask on orderbook entries
 - Fixed bug where trailing stop loss would sell for ask instead of traling stop loss value
