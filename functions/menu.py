@@ -17,6 +17,7 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
   from trailing import trailing
   from takeprofit import takeprofit
   from stoplosstakeprofit import stoplosstakeprofit
+  from trailingtakeprofit import trailingtakeprofit
   from colorama import Fore, Back, Style, init
   init(autoreset=True)
 
@@ -35,11 +36,12 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
     print(Fore.YELLOW + '9. Trailing stop (24/7)')
     print(Fore.YELLOW + '10. Take Profit (BETA + 24/7)')
     print(Fore.YELLOW + '11. Stop Loss + Take Profit (BETA + 24/7)')
-    print(Fore.RED +'12. Exit')
+    print(Fore.YELLOW + '12. Trailing + Take Profit (BETA + 24/7)')
+    print(Fore.RED +'13. Exit')
     print (30 * '-')
 
     try:
-      choice = raw_input('Enter your choice [1-12] : ')
+      choice = raw_input('Enter your choice [1-13] : ')
       choice = int(choice)
     except:
       print 'Invalid number. Try again...'
@@ -88,8 +90,12 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
     elif choice == 11:
       stoplosstakeprofit(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis_password)
 
-    # EXIT
+    # TRAILING TAKE PROFIT
     elif choice == 12:
+      trailingtakeprofit(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis_password)
+
+    # EXIT
+    elif choice == 13:
       count = threading.activeCount()
       if count > 1:
         threads = threading.enumerate()
