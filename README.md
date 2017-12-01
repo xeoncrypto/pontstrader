@@ -9,6 +9,8 @@ Due to it being written in Python, it can run on any device such as: Windows, Ma
 
 !!! This script is here to help you with your trades, we are not responsible for losses !!!
 
+!!! SCRIPT IS NOT USABLE IF YOU ARE NOT A PAYING CUSTOMER !!!
+
 Index:
   - Features (This page)
   - [Installation](docs/Installation.md)

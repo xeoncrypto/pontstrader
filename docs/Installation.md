@@ -57,7 +57,13 @@
   easy_install redis
   ```
 
-#### 6. Now you will be able to run the script
+#### 6. Download the script
+  - Download the latest version: https://github.com/p0nt/pontstrader/archive/master.zip
+  - Or clone it: git clone https://github.com/p0nt/pontstrader.git
+  - For development branch use: https://github.com/p0nt/pontstrader/archive/development.zip
+  - Or clone it: git clone -b development https://github.com/p0nt/pontstrader.git
+
+#### 7. Now you will be able to run the script
   - Windows: run cmd as administrator, cd to the right directory, run: python run.py
   - Linux & Mac: cd to the pontstrader directory and run: ./run.py
   - For windows you can also make a .bat file:
@@ -70,7 +76,7 @@
     --- END ---
   ```
 
-#### 7. Running the script for the first time allows you to setup a few things
+#### 8. Running the script for the first time allows you to setup a few things
   ###### - Bittrex API
   Because you are trading with pontstrader you will have to provide the Bittrex API key and secret during the installation wizard, you can create a key+secret via https://bittrex.com/Manage#sectionApi
   For most of the functions the first 2 slicers need to be on, if you would like to Withdraw with pontstrader please allow the Withdraw slider. In the future we will allow market trading, from that moment the 3th slider should be on as well.

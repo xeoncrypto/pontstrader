@@ -1,4 +1,8 @@
 # Upgrade pontstrader
+- Download the latest version: https://github.com/p0nt/pontstrader/archive/master.zip
+- Or clone it: git clone https://github.com/p0nt/pontstrader.git
+- For development branch use: https://github.com/p0nt/pontstrader/archive/development.zip
+- Or clone it: git clone -b development https://github.com/p0nt/pontstrader.git
 
 If you would like to upgrade your old version towards a newer version, here is a small how to:
   - Download and unzip the new version
