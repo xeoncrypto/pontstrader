@@ -38,7 +38,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       threads = threading.enumerate()
       thread_counter = 0
       for t in threading.enumerate():
-        if in t.name.startswith('sltp-'):
+        if t.name.startswith('sltp-'):
           thread_counter += 1
       if thread_counter > 0:
         print (Fore.YELLOW +'There are currently {0} active sltp trade(s):'.format(thread_counter))

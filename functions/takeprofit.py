@@ -38,7 +38,7 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
       threads = threading.enumerate()
       thread_counter = 0
       for t in threading.enumerate():
-        if in t.name.startswith('tp-'):
+        if t.name.startswith('tp-'):
           thread_counter += 1
       if thread_counter > 0:
         print (Fore.YELLOW +'There are currently {0} active tp trade(s):'.format(thread_counter))
