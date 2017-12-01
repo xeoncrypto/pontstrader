@@ -4,6 +4,7 @@
 - Added current ask on orderbook entries
 - Fixed bug where trailing stop loss would sell for ask instead of traling stop loss value
 - Fixed currency naming indent on all functions
+- Added a exists check after choosing market, otherwise error (trailing / stop loss take profit)
 
 # v3.1
 - Arbitrage hot fix (float error)
