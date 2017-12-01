@@ -372,7 +372,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
               profit_percentage = 100 * (float(ask) - float(buyprice)) / float(buyprice)
               if float(ask) >= float(target):
                 try:
-                  sell = api.selllimit(market, amount, ask)
+                  sell = api.selllimit(market, amount, target)
                   sell_uuid = sell['uuid']
                   time.sleep(0.5)
                   sellorder = api.getorder(uuid=sell_uuid)
@@ -384,7 +384,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                     except:
                       pass
                     time.sleep(2)
-                  message = '{0}: {1} SOLD (Target) | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
+                  message = '{0}: {1} SOLD (Target) | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, target, profit_percentage)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
@@ -397,7 +397,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   break
               elif float(ask) <= float(stoploss):
                 try:
-                  sell = api.selllimit(market, amount, ask)
+                  sell = api.selllimit(market, amount, stoploss)
                   sell_uuid = sell['uuid']
                   time.sleep(0.5)
                   sellorder = api.getorder(uuid=sell_uuid)
@@ -409,7 +409,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                     except:
                       pass
                     time.sleep(2)
-                  message = '{0}: {1} SOLD (Stop Loss) | Buy price {2:.8f} | Sell price {3:.8f} | Loss {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
+                  message = '{0}: {1} SOLD (Stop Loss) | Buy price {2:.8f} | Sell price {3:.8f} | Loss {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, stoploss, profit_percentage)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
@@ -421,7 +421,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   send_pushbullet(pushbullet_token, message)
                   break
               else:
-                message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
+                message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Target: {4:.8f} | Profit {5:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, target, profit_percentage)
                 messages[thread_name] = message
 
     try:
