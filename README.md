@@ -7,9 +7,9 @@ Due to it being written in Python, it can run on any device such as: Windows, Ma
 
 Index:
   - Features (This page)
-  - [Installation](doc/Installation.md)
-  - [Upgrade version or re-configure](doc/Upgradereconfigure.md)
-  - [Releasenotes](doc/Releasenotes.md)
+  - [Installation](docs/Installation.md)
+  - [Upgrade version or re-configure](docs/Upgradereconfigure.md)
+  - [Releasenotes](docs/Releasenotes.md)
 
 Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
 https://t.me/pontstrader
