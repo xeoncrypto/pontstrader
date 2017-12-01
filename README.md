@@ -12,7 +12,7 @@ Due to it being written in Python, it can run on any device such as: Windows, Ma
 !!! SCRIPT IS NOT USABLE IF YOU ARE NOT A PAYING CUSTOMER !!!
 
 Index:
-  - Features (This page)
+  - [Features](#features)
   - [Installation](docs/Installation.md)
   - [Upgrade version or re-configure](docs/Upgradereconfigure.md)
   - [Releasenotes](docs/Releasenotes.md)
