@@ -1,0 +1,4 @@
+functions/
+functions/*.pyc
+settings.json
+run.py
