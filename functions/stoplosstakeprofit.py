@@ -317,7 +317,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       break
 
   if gobuy == True:
-    def start_thread_single(market, currency, amount, ask, target):
+    def start_thread_single(market, currency, amount, ask, stoploss, target):
       time.sleep(1)
       global messages
       thread_name = threading.current_thread().name

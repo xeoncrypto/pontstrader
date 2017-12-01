@@ -396,9 +396,9 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
       threadname = 'tp-{0}'.format(datetime)
       if oneortwotargets == True:
-        thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, stoploss, target1, target2))
+        thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, target1, target2))
       else:
-        thread = threading.Thread(name=threadname, target=start_thread_single,args=(market, currency, amount, ask, stoploss, target))
+        thread = threading.Thread(name=threadname, target=start_thread_single,args=(market, currency, amount, ask, target))
       thread.daemon = True
       thread.start()
       print (Fore.GREEN +'Made a buy order, to check its status go to the Stop Loss Take Profit menu again... going back to Main Menu in 2 seconds')
