@@ -118,6 +118,11 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       market = str(market.upper())
       trade = market.split('-')[0]
       currency = market.split('-')[1]
+      check_status = r.exists(market)
+      if check_status != True:
+        print 'Unsupported market... going back to Main Menu'
+        time.sleep(1)
+        break
     except:
       print '\nInvalid input... going back to Main Menu'
       time.sleep(1)
@@ -160,34 +165,34 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       print (Fore.RED +'The minimum trade size on Bittrex is 100k sat')
       time.sleep(1)
       break
-    elif value >= 0.00200000:
-      print (Fore.GREEN +'You are trading more than or equal to 200k satoshi, which means you are eligible to use multiple sell targets due to Bittrex new policy of 100k satoshi minimum per trade.')
-      print (Fore.GREEN +' - One sell target = sell 100% at .. satoshi')
-      print (Fore.GREEN +' - Two sell targets = sell 50% at .. satoshi, and the other 50% at x satoshi')
-      print (40 * '-')
-      print (Fore.YELLOW +'Would you like to use 2 sell targets or just one?')
-      print (Fore.GREEN +'1. yes, two')
-      print (Fore.YELLOW +'2. no, just one')
-      print (Fore.RED +'3. Return to Main Menu')
-      try:
-        oneortwo = raw_input('Enter your choice [1-3] : ')
-        oneortwo = int(oneortwo)
-      except:
-        print '\nCancelled... going back to Main Menu'
-        time.sleep(1)
-        break
-      if oneortwo == 1:
-        oneortwotargets = True
-      elif oneortwo == 2:
-        pass
-      elif oneortwo == 3:
-        print 'Ok... going back to Main Menu'
-        time.sleep(1)
-        break
-      else:
-        print '\nInvalid number... going back to Main Menu'
-        time.sleep(1)
-        break
+#    elif value >= 0.00200000:
+#      print (Fore.GREEN +'You are trading more than or equal to 200k satoshi, which means you are eligible to use multiple sell targets due to Bittrex new policy of 100k satoshi minimum per trade.')
+#      print (Fore.GREEN +' - One sell target = sell 100% at .. satoshi')
+#      print (Fore.GREEN +' - Two sell targets = sell 50% at .. satoshi, and the other 50% at x satoshi')
+#      print (40 * '-')
+#      print (Fore.YELLOW +'Would you like to use 2 sell targets or just one?')
+#      print (Fore.GREEN +'1. yes, two')
+#      print (Fore.YELLOW +'2. no, just one')
+#      print (Fore.RED +'3. Return to Main Menu')
+#      try:
+#        oneortwo = raw_input('Enter your choice [1-3] : ')
+#        oneortwo = int(oneortwo)
+#      except:
+#        print '\nCancelled... going back to Main Menu'
+#        time.sleep(1)
+#        break
+#      if oneortwo == 1:
+#        oneortwotargets = True
+#      elif oneortwo == 2:
+#        pass
+#      elif oneortwo == 3:
+#        print 'Ok... going back to Main Menu'
+#        time.sleep(1)
+#        break
+#      else:
+#        print '\nInvalid number... going back to Main Menu'
+#        time.sleep(1)
+#        break
     else:
       print (Fore.YELLOW +'You are trading with less than 200k satoshi, which means you are not eligible to use multiple sell targets due to Bittrex new policy of 100k satoshi per trade minimum, so we will stick with one.')
 
@@ -221,29 +226,30 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       break
 
     if oneortwotargets == True:
-      try:
-        target1 = raw_input('Target 1? 50% of the trade value will be sold here [eg. 0.00436] : ')
-        target1 = float(target1)
-      except:
-        print '\nInvalid number... going back to Main Menu'
-        time.sleep(1)
-        break
-
-      try:
-        target2 = raw_input('Target 2? 50% of the trade value will be sold here [eg. 0.00436] : ')
-        target2 = float(target2)
-      except:
-        print '\nInvalid number... going back to Main Menu'
-        time.sleep(1)
-        break
-      print (40 * '-')
-      print (Fore.GREEN +'   B U Y  I N F O R M A T I O N')
-      print (Fore.YELLOW +'- Buyprice:               {0:.8f}'.format(float(values[0])))
-      print (Fore.YELLOW +'- Target 1:               {0:.8f}'.format(float(target1)))
-      print (Fore.YELLOW +'- Target 2:               {0:.8f}'.format(float(target2)))
-      print (Fore.YELLOW +'- Stop Loss:              {0:.8f}'.format(float(stoploss)))
-      print (Fore.YELLOW +'Because the price could have changed during your input...')
-      print (Fore.YELLOW +'Pontstrader wil calculate new targets and stop loss based on the buyprice.')
+      pass
+#      try:
+#        target1 = raw_input('Target 1? 50% of the trade value will be sold here [eg. 0.00436] : ')
+#        target1 = float(target1)
+#      except:
+#        print '\nInvalid number... going back to Main Menu'
+#        time.sleep(1)
+#        break
+#
+#      try:
+#        target2 = raw_input('Target 2? 50% of the trade value will be sold here [eg. 0.00436] : ')
+#        target2 = float(target2)
+#      except:
+#        print '\nInvalid number... going back to Main Menu'
+#        time.sleep(1)
+#        break
+#      print (40 * '-')
+#      print (Fore.GREEN +'   B U Y  I N F O R M A T I O N')
+#      print (Fore.YELLOW +'- Buyprice:               {0:.8f}'.format(float(values[0])))
+#      print (Fore.YELLOW +'- Target 1:               {0:.8f}'.format(float(target1)))
+#      print (Fore.YELLOW +'- Target 2:               {0:.8f}'.format(float(target2)))
+#      print (Fore.YELLOW +'- Stop Loss:              {0:.8f}'.format(float(stoploss)))
+#      print (Fore.YELLOW +'Because the price could have changed during your input...')
+#      print (Fore.YELLOW +'Pontstrader wil calculate new targets and stop loss based on the buyprice.')
     else:
       try:
         target = raw_input('Target? 100% of the trade value will be sold here [eg. 0.00436] : ')
@@ -274,9 +280,8 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       break
     if proceed == 1:
       try:
-        values = r.hmget(market, 'Ask', 'Bid')
+        values = r.hmget(market, 'Ask')
         ask = float(values[0])
-        bid = float(values[1])
         amount = float(value) / float(ask)
         orderbook = api.getorderbook(market, type='sell')
         orderbook_rate = orderbook[0]['Rate']
@@ -290,9 +295,8 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
             orderbook = api.getorderbook(market, type='sell')
             orderbook_rate = orderbook[0]['Rate']
             orderbook_quantity = orderbook[0]['Quantity']
-            values = r.hmget(market, 'Ask', 'Bid')
+            values = r.hmget(market, 'Ask')
             ask = float(values[0])
-            bid = float(values[1])
             amount = float(value) / float(ask)
             print (Fore.YELLOW +'Waiting for the volume to rise on lowest Ask to buy all for the same price.')
           gobuy = True
@@ -316,6 +320,8 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       global messages
       thread_name = threading.current_thread().name
       while True:
+        values = r.hmget(market, 'Ask')
+        ask = float(values[0])
         try:
           buy = api.buylimit(market, amount, ask)
         except:
@@ -416,7 +422,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   send_pushbullet(pushbullet_token, message)
                   break
               else:
-                message = '{0}: {1} STATUS | Buy price {2:.8f} | Price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
+                message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
                 messages[thread_name] = message
 
     try:
@@ -428,7 +434,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
         thread = threading.Thread(name=threadname, target=start_thread_single,args=(market, currency, amount, ask, stoploss, target))
       thread.daemon = True
       thread.start()
-      print (Fore.GREEN +'Made a buy order, to check its status go to the SLTP menu again... going back to Main Menu in 2 seconds')
+      print (Fore.GREEN +'Made a buy order, to check its status go to the Stop Loss Take Profit menu again... going back to Main Menu in 2 seconds')
       time.sleep(2)
     except:
       print (Fore.RED +'Unable to start thread... there is something wrong please contact p0nts!')

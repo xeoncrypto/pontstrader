@@ -118,6 +118,11 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
       market = str(market.upper())
       trade = market.split('-')[0]
       currency = market.split('-')[1]
+      check_status = r.exists(market)
+      if check_status != True:
+        print 'Unsupported market... going back to Main Menu'
+        time.sleep(1)
+        break
     except:
       print '\nInvalid input... going back to Main Menu'
       time.sleep(1)
@@ -277,16 +282,16 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
                 if float(new_trailing_stop_loss) > float(trailing_stop_loss):
                   trailing_stop_loss = float(ask) - float(trailing_percentage)
                   stop_loss_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
-                  message = '{0}:  {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+                  message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
                   messages[thread_name] = message
                 else:
-                  message = '{0}:  {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+                  message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
                   messages[thread_name] = message
               else:
-                message = '{0}:  {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+                message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
                 messages[thread_name] = message
             elif float(ask) < float(buyprice) and float(ask) != float(lastprice):
-              message = '{0}:  {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+              message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
               messages[thread_name] = message
             elif float(ask) == float(buyprice) and float(ask) != float(lastprice):
               pass
