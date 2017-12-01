@@ -28,6 +28,9 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
   else:
     pass
   
+  print (45 * '-')
+  print(Fore.GREEN +'   S T O P  L O S S  T A K E  P R O F I T')
+  print (45 * '-')
   while True:
     status_update = False
     gobuy = False
