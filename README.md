@@ -3,7 +3,6 @@
 </p>
 pontstrader is a trading script running on python2.7 which adds some extra features to the default Bittrex trading possibilities trough the Bittrex webinterface.
 
-
 Due to it being written in Python, it can run on any device such as: Windows, Mac, Linux, Raspberry Pi, Phone and NAS.
 
 !!! PONTSTRADER IS NOT AN AUTOMATED TRADING BOT !!!
