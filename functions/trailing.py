@@ -310,7 +310,7 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
             except:
               pass
             time.sleep(2)
-          message = '{0}: {1} SOLD | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
+          message = '{0}: {1} SOLD | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, trailing_stop_loss, profit_percentage)
           messages[thread_name] = message
           send_pushover(pushover_user, pushover_app, message)
           send_pushbullet(pushbullet_token, message)
