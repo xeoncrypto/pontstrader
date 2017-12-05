@@ -236,6 +236,7 @@ def trailingtakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
     def start_thread(market, currency, amount, ask, trailing):
       time.sleep(1)
       global messages
+      done = False
       thread_name = threading.current_thread().name
       while True:
         try:
@@ -265,67 +266,71 @@ def trailingtakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
           send_pushover(pushover_user, pushover_app, message)
           send_pushbullet(pushbullet_token, message)
           break
-        while True:
-          try:
-            time.sleep(0.5)
-            values = r.hmget(market, 'Ask')
-            ask = float(values[0])
-          except:
-            message = 'Unable to retrieve data from redis.pontstrader.com, trying to recover...'
-            messages[thread_name] = message
-          else:
-            percentage = 100 * (float(ask) - float(buyprice)) / float(buyprice)
-            trailing_percentage = float(ask) / 100 * float(trailing)
-            if float(ask) > float(buyprice) and ask != lastprice:
-              if float(ask) > lastprice and float(ask) > float(buyprice):
-                new_trailing_stop_loss = float(ask) - float(trailing_percentage)
-                if float(new_trailing_stop_loss) > float(trailing_stop_loss):
-                  trailing_stop_loss = float(ask) - float(trailing_percentage)
-                  stop_loss_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
-                  message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
-                  messages[thread_name] = message
+        else:
+          while True:
+            try:
+              time.sleep(0.5)
+              values = r.hmget(market, 'Ask')
+              ask = float(values[0])
+            except:
+              message = 'Unable to retrieve data from redis.pontstrader.com, trying to recover...'
+              messages[thread_name] = message
+            else:
+              percentage = 100 * (float(ask) - float(buyprice)) / float(buyprice)
+              trailing_percentage = float(ask) / 100 * float(trailing)
+              if float(ask) > float(buyprice) and ask != lastprice:
+                if float(ask) > lastprice and float(ask) > float(buyprice):
+                  new_trailing_stop_loss = float(ask) - float(trailing_percentage)
+                  if float(new_trailing_stop_loss) > float(trailing_stop_loss):
+                    trailing_stop_loss = float(ask) - float(trailing_percentage)
+                    stop_loss_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
+                    message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+                    messages[thread_name] = message
+                  else:
+                    message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+                    messages[thread_name] = message
                 else:
                   message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
                   messages[thread_name] = message
-              else:
+              elif float(ask) < float(buyprice) and float(ask) != float(lastprice):
                 message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
                 messages[thread_name] = message
-            elif float(ask) < float(buyprice) and float(ask) != float(lastprice):
-              message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Profit: {4:.2f}% | Stop Loss: {5:.8f} ({6:.2f}%)'.format(thread_name, currency, float(buyprice), float(ask), float(percentage), float(trailing_stop_loss), float(stop_loss_percentage))
+              elif float(ask) == float(buyprice) and float(ask) != float(lastprice):
+                pass
+              lastprice = float(ask)
+              feepercentage = (0.5*float(buyprice))/100
+              buypriceplusfee = float(buyprice) + float(feepercentage)
+              if float(ask) <= float(trailing_stop_loss) and float(ask) > float(buypriceplusfee):
+                break
+          profit_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
+          try:
+            sell = api.selllimit(market, amount, trailing_stop_loss)
+            sell_uuid = sell['uuid']
+            time.sleep(0.5)
+            sellorder = api.getorder(uuid=sell_uuid)
+            while sellorder['IsOpen'] == True:
+              message = '{0}: Stop Loss triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
               messages[thread_name] = message
-            elif float(ask) == float(buyprice) and float(ask) != float(lastprice):
-              pass
-            lastprice = float(ask)
-            feepercentage = (0.5*float(buyprice))/100
-            buypriceplusfee = float(buyprice) + float(feepercentage)
-            if float(ask) <= float(trailing_stop_loss) and float(ask) > float(buypriceplusfee):
-              break
-        profit_percentage = 100 * (float(trailing_stop_loss) - float(buyprice)) / float(buyprice)
-        try:
-          sell = api.selllimit(market, amount, trailing_stop_loss)
-          sell_uuid = sell['uuid']
-          time.sleep(0.5)
-          sellorder = api.getorder(uuid=sell_uuid)
-          while sellorder['IsOpen'] == True:
-            message = '{0}: Stop Loss triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
+              try:
+                sellorder = api.getorder(uuid=sell_uuid)
+              except:
+                pass
+              time.sleep(10)
+            message = '{0}: {1} SOLD | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, trailing_stop_loss, profit_percentage)
             messages[thread_name] = message
-            try:
-              sellorder = api.getorder(uuid=sell_uuid)
-            except:
-              pass
-            time.sleep(2)
-          message = '{0}: {1} SOLD | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, profit_percentage)
-          messages[thread_name] = message
-          send_pushover(pushover_user, pushover_app, message)
-          send_pushbullet(pushbullet_token, message)
+            send_pushover(pushover_user, pushover_app, message)
+            send_pushbullet(pushbullet_token, message)
+            done = True
+            break
+          except:
+            message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
+            messages[thread_name] = message
+            send_pushover(pushover_user, pushover_app, message)
+            send_pushbullet(pushbullet_token, message)
+            done = True
+            break
+        if done == True:
           break
-        except:
-          message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
-          messages[thread_name] = message
-          send_pushover(pushover_user, pushover_app, message)
-          send_pushbullet(pushbullet_token, message)
-          break
-  
     try:
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M") 
       threadname = 'ttp-{0}'.format(datetime)
