@@ -318,6 +318,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
       time.sleep(1)
       global messages
       thread_name = threading.current_thread().name
+      done = False
       while True:
         values = r.hmget(market, 'Ask')
         ask = float(values[0])
@@ -413,17 +414,21 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
                 except:
                   message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
               else:
                 message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Target: {4:.8f} | Profit {5:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, target, profit_percentage)
                 messages[thread_name] = message
 
+        if done == True:
+          break
     try:
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
       threadname = 'sltp-{0}'.format(datetime)

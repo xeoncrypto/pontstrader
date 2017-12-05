@@ -308,6 +308,7 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
       time.sleep(1)
       global messages
       thread_name = threading.current_thread().name
+      done = False
       while True:
         values = r.hmget(market, 'Ask')
         ask = float(values[0])
@@ -330,26 +331,28 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
             message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
             messages[thread_name] = message
           else:
-            while buyorder['IsOpen'] == True:
-              message = '{0}: Made a buyorder, waiting until it is filled! Remaining: {1:.8f} {2}'.format(thread_name, buyorder['QuantityRemaining'], currency)
-              messages[thread_name] = message
-              if push_send == False:
-                try:
-                  send_pushover(pushover_user, pushover_app, message)
-                  send_pushbullet(pushbullet_token, message)
-                  push_send = True
-                except:
-                  message = 'Unable to send push notification with the buyorder status'
-                  messages[thread_name] = message
-              try:
-                buyorder = api.getorder(uuid=buy_uuid)
-              except:
-                message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
+            time.sleep(0.5)
+            if buyorder['IsOpen'] == True:
+              while buyorder['IsOpen'] == True:
+                message = '{0}: Made a buyorder, waiting until it is filled! Remaining: {1:.8f} {2}'.format(thread_name, buyorder['QuantityRemaining'], currency)
                 messages[thread_name] = message
-                pass
-              time.sleep(10)
-            buyprice = float(ask)
-            lastprice = 0
+                if push_send == False:
+                  try:
+                    send_pushover(pushover_user, pushover_app, message)
+                    send_pushbullet(pushbullet_token, message)
+                    push_send = True
+                  except:
+                    message = 'Unable to send push notification with the buyorder status'
+                    messages[thread_name] = message
+                try:
+                  buyorder = api.getorder(uuid=buy_uuid)
+                except:
+                  message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
+                  messages[thread_name] = message
+                  pass
+                time.sleep(10)
+              buyprice = float(ask)
+              lastprice = 0
           while True:
             try:
               time.sleep(0.5)
@@ -378,17 +381,20 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
                 except:
                   message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
               else:
                 message = '{0}: {1} | Buy price {2:.8f} | Price {3:.8f} | Target: {4:.8f} | Profit {5:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, ask, target, profit_percentage)
                 messages[thread_name] = message
-
+        if done == True:
+          break
     try:
       datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
       threadname = 'tp-{0}'.format(datetime)
