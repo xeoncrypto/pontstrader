@@ -341,24 +341,25 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
             message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
             messages[thread_name] = message
           else:
-            while buyorder['IsOpen'] == True:
-              message = '{0}: Made a buyorder, waiting until it is filled! Remaining: {1:.8f} {2}'.format(thread_name, buyorder['QuantityRemaining'], currency)
-              messages[thread_name] = message
-              if push_send == False:
-                try:
-                  send_pushover(pushover_user, pushover_app, message)
-                  send_pushbullet(pushbullet_token, message)
-                  push_send = True
-                except:
-                  message = 'Unable to send push notification with the buyorder status'
-                  messages[thread_name] = message
-              try:
-                buyorder = api.getorder(uuid=buy_uuid)
-              except:
-                message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
+            if buyorder['IsOpen'] == True:
+              while buyorder['IsOpen'] == True:
+                message = '{0}: Made a buyorder, waiting until it is filled! Remaining: {1:.8f} {2}'.format(thread_name, buyorder['QuantityRemaining'], currency)
                 messages[thread_name] = message
-                pass
-              time.sleep(10)
+                if push_send == False:
+                  try:
+                    send_pushover(pushover_user, pushover_app, message)
+                    send_pushbullet(pushbullet_token, message)
+                    push_send = True
+                  except:
+                    message = 'Unable to send push notification with the buyorder status'
+                    messages[thread_name] = message
+                try:
+                  buyorder = api.getorder(uuid=buy_uuid)
+                except:
+                  message = 'Bittrex API error, unable to check the buyorder: {0}'.format(buyorder)
+                  messages[thread_name] = message
+                  pass
+                time.sleep(10)
             buyprice = float(ask)
             lastprice = 0
           while True:
@@ -377,24 +378,27 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   sell_uuid = sell['uuid']
                   time.sleep(0.5)
                   sellorder = api.getorder(uuid=sell_uuid)
-                  while sellorder['IsOpen'] == True:
-                    message = '{0}: Sell target triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
-                    messages[thread_name] = message
-                    try:
-                      sellorder = api.getorder(uuid=sell_uuid)
-                    except:
-                      pass
-                    time.sleep(2)
+                  if sellorder['IsOpen'] == True:
+                    while sellorder['IsOpen'] == True:
+                      message = '{0}: Sell target triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
+                      messages[thread_name] = message
+                      try:
+                        sellorder = api.getorder(uuid=sell_uuid)
+                      except:
+                        pass
+                      time.sleep(2)
                   message = '{0}: {1} SOLD (Target) | Buy price {2:.8f} | Sell price {3:.8f} | Profit {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, target, profit_percentage)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
                 except:
                   message = '{0}: API error: Was unable to create the sellorder... it was cancelled due to:\n{1}'.format(thread_name, sell)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
                   send_pushbullet(pushbullet_token, message)
+                  done = True
                   break
               elif float(ask) <= float(stoploss):
                 try:
@@ -402,14 +406,15 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
                   sell_uuid = sell['uuid']
                   time.sleep(0.5)
                   sellorder = api.getorder(uuid=sell_uuid)
-                  while sellorder['IsOpen'] == True:
-                    message = '{0}: Stop Loss triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
-                    messages[thread_name] = message
-                    try:
-                      sellorder = api.getorder(uuid=sell_uuid)
-                    except:
-                      pass
-                    time.sleep(2)
+                  if sellorder['IsOpen'] == True:
+                    while sellorder['IsOpen'] == True:
+                      message = '{0}: Stop Loss triggered, waiting until the sell order is completely filled! Remaining: {1:.8f}'.format(thread_name, sellorder['QuantityRemaining'])
+                      messages[thread_name] = message
+                      try:
+                        sellorder = api.getorder(uuid=sell_uuid)
+                      except:
+                        pass
+                      time.sleep(2)
                   message = '{0}: {1} SOLD (Stop Loss) | Buy price {2:.8f} | Sell price {3:.8f} | Loss {4:.2f}% (excl. fee)'.format(thread_name, currency, buyprice, stoploss, profit_percentage)
                   messages[thread_name] = message
                   send_pushover(pushover_user, pushover_app, message)
