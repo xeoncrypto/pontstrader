@@ -435,7 +435,7 @@ def stoplosstakeprofit(key, secret, pushover_user, pushover_app, pushbullet_toke
         if done == True:
           break
     try:
-      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
+      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M:%s")
       threadname = 'sltp-{0}'.format(datetime)
       if oneortwotargets == True:
         thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, stoploss, target1, target2))

@@ -223,9 +223,7 @@ def sell(key, secret, redis_password):
                 sellorder = api.getorder(uuid=sell_uuid)
                 time.sleep(10)
                 time_decrease -= 10
-              print 'Unfortunatly the order is not completely filled yet'
-            else:
-              print 'Great! Order is completely filled'
+            print 'Great! Order is completely filled'
           elif yes_no == 2:
             print '\nOk... going back to Main Menu'
             time.sleep(1)
