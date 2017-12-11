@@ -9,16 +9,16 @@ Due to it being written in Python, it can run on any device such as: Windows, Ma
 
 !!! This script is here to help you with your trades, we are not responsible for losses !!!
 
-!!! SCRIPT IS NOT USABLE IF YOU ARE NOT A PAYING CUSTOMER !!!
+!!! This script is not usable if you have no subscription, unless you are able to create your own backend with the public ticker data, feel free to do so !!!
+
+Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
+https://t.me/pontstrader
 
 Index:
   - [Features](#features)
   - [Installation](docs/Installation.md)
   - [Upgrade version or re-configure](docs/Upgradereconfigure.md)
   - [Releasenotes](docs/Releasenotes.md)
-
-Join us on Telegram for more information or if you would like to purchase pontstrader for just 10 dollar:
-https://t.me/pontstrader
 
 ## What can users do with pontstrader
 
