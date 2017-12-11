@@ -323,7 +323,7 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
           break
   
     try:
-      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M") 
+      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M:%s") 
       threadname = 'tsl-{0}'.format(datetime)
       thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, trailing))
       thread.daemon = True

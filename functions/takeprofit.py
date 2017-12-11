@@ -396,7 +396,7 @@ def takeprofit(key, secret, pushover_user, pushover_app, pushbullet_token, redis
         if done == True:
           break
     try:
-      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M")
+      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M:%s")
       threadname = 'tp-{0}'.format(datetime)
       if oneortwotargets == True:
         thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, target1, target2))
