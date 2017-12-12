@@ -322,13 +322,13 @@ def trailing(key, secret, pushover_user, pushover_app, pushbullet_token, redis_p
           send_pushbullet(pushbullet_token, message)
           break
   
-    #try:
-    datetime = datetime.now().strftime("%d-%m-%Y.%H:%M:%S") 
-    threadname = 'tsl-{0}'.format(datetime)
-    thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, trailing))
-    thread.daemon = True
-    thread.start()
-    print (Fore.GREEN +'Made a buy order, to check its status go to the Trailing Stop Loss menu again... going back to Main Menu in 2 seconds')
-    time.sleep(2)
-    #except:
-  #  print (Fore.RED +'Unable to start thread... there is something wrong please contact p0nts!')
+    try:
+      datetime = datetime.now().strftime("%d-%m-%Y.%H:%M:%S") 
+      threadname = 'tsl-{0}'.format(datetime)
+      thread = threading.Thread(name=threadname, target=start_thread,args=(market, currency, amount, ask, trailing))
+      thread.daemon = True
+      thread.start()
+      print (Fore.GREEN +'Made a buy order, to check its status go to the Trailing Stop Loss menu again... going back to Main Menu in 2 seconds')
+      time.sleep(2)
+    except:
+      print (Fore.RED +'Unable to start thread... there is something wrong please contact p0nts!')
