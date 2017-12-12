@@ -85,7 +85,7 @@
 #### 8. Running the script for the first time allows you to setup a few things
   ###### - Bittrex API
   Because you are trading with pontstrader you will have to provide the Bittrex API key and secret during the installation wizard, you can create a key+secret via https://bittrex.com/Manage#sectionApi
-  For most of the functions the first 2 slicers need to be on, if you would like to Withdraw with pontstrader please allow the Withdraw slider. In the future we will allow market trading, from that moment the 3th slider should be on as well.
+  For most of the functions the "Read Info" and "Trade Limit" sliders need to be enabled, if you would like to Withdraw with pontstrader please enable the "Withdraw" slider. In the future we will allow market trading, from that moment the 3th slider should be on as well.
   If you enable Withdraw, make sure to add a IP whitelist for this key which will disallow others to withdraw through your API keys should they ever get known by 3th party. (pontstrader will not send or store your keys anywhere)
   
   ###### - Pushover / Pushbullet
