@@ -33,7 +33,7 @@ def menu(apikey, apisecret, pushover_user, pushover_app, pushbullet_token, redis
     print(Fore.YELLOW + '6. Watch coin')
     print(Fore.YELLOW + '7. Withdraw')
     print(Fore.YELLOW + '8. Arbitrage')
-    print(Fore.YELLOW + '9. Trailing stop (24/7)')
+    print(Fore.YELLOW + '9. Trailing Stop Loss (24/7)')
     print(Fore.YELLOW + '10. Take Profit (BETA + 24/7)')
     print(Fore.YELLOW + '11. Stop Loss + Take Profit (BETA + 24/7)')
     print(Fore.YELLOW + '12. Trailing + Take Profit (BETA + 24/7)')
