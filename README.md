@@ -31,16 +31,20 @@ Index:
 7. Withdraw cryptocurrencies (Bittrex)
 8. Check arbitrage oppertunaties between exchanges (Bittrex, HitBTC, Binance, Bitfinex, Poloniex)
 9. Use Trailing Stop Loss, which is normally not possible on most exchanges (Bittrex)
+10. Take Profit function that sells on configured target and sends push notification (Bittrex)
+11. Stop Loss + Take Profit creates both stop loss and take profit targets at once (Bittrex)
+12. Trailing + Take Profit same as function 9 but only sells in profit (Bittrex)
 
 Some of the above functions require the script to run on a system which is on 24/7, this is due to the fact the script is actively (every 0.5 seconds) quering the pontstrader redis database for price changes.
 Currently the following functions require a 24/7 running system:
 
 - Trailing Stop Loss
+- Take Profit
+- Stop Loss + Take Profit
+- Trailing Take Profit
 
 ## What can users expect from pontstrader in the near future
 
-1. Stop Loss + Take Profit function which allows you to set not just one but multiple tresholds, which means the script will not only sell when it hits your stop loss treshold but will also sell when it hits your profit tresholds. Normally you can only choose one on Bittrex. (this will also require a 24/7 running system)
-2. Stop Loss + Take Profit multiple sell tresholds. Same as the above, but then a 50/50 split in selling tresholds. For example you want to sell 50% at 5% profit, and the other 50% at 10%. (this will also require a 24/7 running system)
 3. Multiple exchange support on every function, currently only Bittrex is supported on most of them
 4. And much more!
 
@@ -124,6 +128,7 @@ Small example:
 If you set a trailing stop loss treshold to 10% your trade will immidiatly be sold when it falls 10% straight away, but if it climbs to 5% profit and afterwards falls 10% it will stop at -5% instead of minus 10%, this results in less loss.
 If the price starts climbing and it goes towards 20%, the trailing stop loss will be set to 10%. When it starts falling it will sell on 10% which results in less risk and restless sleep for you :)
 
+<img width="25%" height="25%" src="http://sassyfinance.com/wp-content/uploads/2014/01/TrailingStop.png">
 <img width="25%" height="25%" src="img/trailing1.png">
 <img width="25%" height="25%" src="img/trailing2.png">
 
